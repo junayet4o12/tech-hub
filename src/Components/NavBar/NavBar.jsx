@@ -8,8 +8,9 @@ import {
     IconButton,
     Card,
 } from "@material-tailwind/react";
+import { NavLink } from "react-router-dom";
 
- const NavBar = () => {
+const NavBar = () => {
     const [openNav, setOpenNav] = useState(false);
 
     React.useEffect(() => {
@@ -21,46 +22,55 @@ import {
 
     const navList = (
         <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Pages
-                </a>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Account
-                </a>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Blocks
-                </a>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Docs
-                </a>
-            </Typography>
+
+            <NavLink to={'/'}>
+                <Typography
+                    as="li"
+                    variant="small"
+                    color="blue-gray"
+                    className="p-1 font-normal navlink transition-all duration-500"
+                >
+                    <a className="flex items-center">
+                        Home
+                    </a>
+                </Typography>
+            </NavLink>
+            <NavLink to={'/allProducts'}>
+                <Typography
+                    as="li"
+                    variant="small"
+                    color="blue-gray"
+                    className="p-1 font-normal"
+                >
+                    <a  className="flex items-center navlink transition-all duration-500">
+                        All Products
+                    </a>
+                </Typography>
+            </NavLink>
+            <NavLink to={'yourProducts'}>
+                <Typography
+                    as="li"
+                    variant="small"
+                    color="blue-gray"
+                    className="p-1 font-normal"
+                >
+                    <a  className="flex items-center navlink transition-all duration-500">
+                        Your Products
+                    </a>
+                </Typography>
+            </NavLink>
+            <NavLink to={'addProducts'}>
+                <Typography
+                    as="li"
+                    variant="small"
+                    color="blue-gray"
+                    className="p-1 font-normal"
+                >
+                    <a  className="flex items-center navlink transition-all duration-500">
+                        Add Product
+                    </a>
+                </Typography>
+            </NavLink>
         </ul>
     );
 
@@ -78,18 +88,12 @@ import {
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
                         <div className="flex items-center gap-x-1">
-                            <Button
-                                variant="text"
-                                size="sm"
-                                className="hidden lg:inline-block"
-                            >
-                                <span>Log In</span>
-                            </Button>
+
                             <Button
                                 size="sm"
                                 className="hidden lg:inline-block bg-secondary"
                             >
-                                <span>Sign in</span>
+                                <span>Log in</span>
                             </Button>
                         </div>
                         <IconButton
@@ -134,10 +138,7 @@ import {
                 <MobileNav open={openNav}>
                     {navList}
                     <div className="flex items-center gap-x-1">
-                        <Button fullWidth variant="text" size="sm" className="">
-                            <span>Log In</span>
-                        </Button>
-                        <Button fullWidth  size="sm" className="bg-secondary">
+                        <Button fullWidth size="sm" className="bg-secondary">
                             <span>Sign in</span>
                         </Button>
                     </div>

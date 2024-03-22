@@ -9,7 +9,19 @@ const MyRouts = createBrowserRouter([
         {
           path: '/',
           element: <Home></Home>
-        }
+        },
+        {
+          path: '/allProducts',
+          element: <div>all products</div>
+        },
+        {
+          path: '/yourProducts',
+          element: <div>your products</div>
+        },
+        {
+          path: '/addProducts',
+          element: <div>Add products</div>
+        },
       ]
     },
   ]);

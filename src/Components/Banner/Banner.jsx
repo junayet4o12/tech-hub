@@ -7,9 +7,9 @@ const Banner = () => {
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
-                        <h1 className="mb-5 text-5xl font-medium">Welcome To <br /> <span className='font-bold'>Tech Hub</span></h1>
-                        <p className="mb-5">Tech Hub simplifies tech enthusiasts' experience by providing a user-friendly platform for adding, updating, and managing tech-related content. Join us today!</p>
-                        <button className="btn btn-primary bg-primary/80 border-none hover:bg-primary">Get Started</button>
+                        <h1 className="mb-5 text-5xl font-medium">Welcome To <br /> <span className='font-bold text-primary'>Tech Hub</span></h1>
+                        <p className="mb-5">Tech Hub simplifies tech enthusiasts' experience by providing a user-friendly platform for adding, updating, and managing tech-related Products. Join us today!</p>
+                        <button className="btn btn-primary bg-primary/80 border-none hover:bg-primary">Add Product</button>
                     </div>
                 </div>
             </div>
