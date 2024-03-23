@@ -6,7 +6,7 @@ import { GiArchiveRegister } from 'react-icons/gi';
 import { MdLogin } from 'react-icons/md';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import {  useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
@@ -22,7 +22,8 @@ const Register = () => {
     const { createUser } = useAuth()
     const [showpass, setshowpass] = useState(true);
     const imgHostingKey = import.meta.env.VITE_IMG_HOSTING_KEY;
-    const imgHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`
+    const imgHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
+    const navigate = useNavigate()
     // const axiosPublic = useAxiosPublic();
     const [err, seterr] = useState('')
     const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm()
@@ -54,6 +55,7 @@ const Register = () => {
 
 
                         }
+                        navigate('/')
                         // axiosPublic.post('/users', userInfo)
                         //     .then(res => {
                         //         if (res.data.insertedId) {
