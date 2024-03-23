@@ -40,9 +40,9 @@ const NavBar = () => {
                     as="li"
                     variant="small"
                     color="blue-gray"
-                    className="p-1 font-normal"
+                    className="p-1 font-normal navlink transition-all duration-500"
                 >
-                    <a  className="flex items-center navlink transition-all duration-500">
+                    <a className="flex items-center ">
                         All Products
                     </a>
                 </Typography>
@@ -52,9 +52,9 @@ const NavBar = () => {
                     as="li"
                     variant="small"
                     color="blue-gray"
-                    className="p-1 font-normal"
+                    className="p-1 font-normal navlink transition-all duration-500"
                 >
-                    <a  className="flex items-center navlink transition-all duration-500">
+                    <a className="flex items-center ">
                         Your Products
                     </a>
                 </Typography>
@@ -64,9 +64,9 @@ const NavBar = () => {
                     as="li"
                     variant="small"
                     color="blue-gray"
-                    className="p-1 font-normal"
+                    className="p-1 font-normal navlink transition-all duration-500"
                 >
-                    <a  className="flex items-center navlink transition-all duration-500">
+                    <a className="flex items-center ">
                         Add Product
                     </a>
                 </Typography>
@@ -89,12 +89,14 @@ const NavBar = () => {
                         <div className="mr-4 hidden lg:block">{navList}</div>
                         <div className="flex items-center gap-x-1">
 
-                            <Button
-                                size="sm"
-                                className="hidden lg:inline-block bg-secondary"
-                            >
-                                <span>Log in</span>
-                            </Button>
+                            <NavLink to={'/login'}>
+                                <Button
+                                    size="sm"
+                                    className="hidden lg:inline-block bg-secondary"
+                                >
+                                    <span>Log in</span>
+                                </Button>
+                            </NavLink>
                         </div>
                         <IconButton
                             variant="text"
@@ -138,9 +140,11 @@ const NavBar = () => {
                 <MobileNav open={openNav}>
                     {navList}
                     <div className="flex items-center gap-x-1">
-                        <Button fullWidth size="sm" className="bg-secondary">
-                            <span>Sign in</span>
-                        </Button>
+                        <NavLink to={'/login'}>
+                            <Button fullWidth size="sm" className="bg-secondary">
+                                <span>Log in</span>
+                            </Button>
+                        </NavLink>
                     </div>
                 </MobileNav>
             </Navbar>

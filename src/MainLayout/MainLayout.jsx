@@ -1,14 +1,19 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import NavBar from '../Components/NavBar/NavBar';
 
 const MainLayout = () => {
+    const location = useLocation();
+    const pathName = location.pathname
+    console.log(location.pathname);
     return (
         <div className='relative'>
-             <div className='fixed w-full z-10'>
+            <div className='fixed w-full z-10'>
                 <NavBar />
             </div>
-            <Outlet/>
+            <div className={`${pathName==='/' ? 'pt-0' : 'pt-14'}`}>
+                <Outlet />
+            </div>
         </div>
     );
 };
