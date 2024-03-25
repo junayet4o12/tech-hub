@@ -18,8 +18,10 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import auth from "../../firebase/firebase.config";
 import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 const Register = () => {
     const { createUser } = useAuth()
+    const axiosPublic = useAxiosPublic()
     const [showpass, setshowpass] = useState(true);
     const imgHostingKey = import.meta.env.VITE_IMG_HOSTING_KEY;
     const imgHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
@@ -50,25 +52,24 @@ const Register = () => {
                         const userInfo = {
                             name: data.name,
                             email: data.email,
-                            contactNumber: '',
-                            age: '',
+                            image: imgurl
 
 
                         }
-                        navigate('/')
-                        // axiosPublic.post('/users', userInfo)
-                        //     .then(res => {
-                        //         if (res.data.insertedId) {
-                        //             Swal.fire({
-                        //                 icon: "success",
-                        //                 title: "User Created Successfully",
-                        //                 showConfirmButton: false,
-                        //                 timer: 1500
-                        //             });
-                        //             reset();
-                        //             navigate('/')
-                        //         }
-                        //     })
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res);
+                                if (res.statusText=='OK') {
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "User Created Successfully",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    reset();
+                                    navigate('/')
+                                }
+                            })
 
                     })
                     .catch(err => {
@@ -84,11 +85,11 @@ const Register = () => {
     return (
         <div className="">
            
-            <div className="py-7 px-7 flex  overflow-hidden">
+            <div className="py-7  flex ">
                 <motion.div
                     initial={{ y: -100, }}
                     whileInView={{ y: 0 }}
-                    transition={{ duration: 0.5 }} className='w-[50%]  justify-center hidden lg:block items-center'>
+                    transition={{ duration: 0.5 }} className='w-[50%]  justify-center hidden lg:block items-center '>
                     <div className='h-full flex justify-center items-center'>
                         <img className='w-[500px] h-[400px]  object-cover' src={registerimg} alt="" />
                     </div>
@@ -100,28 +101,28 @@ const Register = () => {
 
                     <div className="mx-auto w-[100%] p-5  pb-10 text-black  ">
                         <h2 className="text-3xl font-bold uppercase  text-center mb-6 text-gray-600 ">Register</h2>
-                        <div className="flex flex-col justify-center items-center gap-5 text-sm font-medium">
+                        <div className="flex flex-col justify-center items-center gap-5 text-sm font-medium ">
 
                             <div>
                                 <p className="px-2 pb-1 text-sm">Write your name</p>
-                                <div className="relative w-full sm:w-[450px]">
+                                <div className="relative w-[300px] sm:w-[450px]">
 
-                                    <input name="name" {...register("name", { required: true })} className="w-[300px]  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="text" placeholder="Name" />
+                                    <input name="name" {...register("name", { required: true })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="text" placeholder="Name" />
                                     {errors.name && <span className='text-red-500'>Name is required</span>}
                                     <p className='text-xl absolute top-3.5 left-3 '><MdDriveFileRenameOutline></MdDriveFileRenameOutline></p>
                                 </div>
                             </div>
                             <div>
                                 <p className="px-2 pb-1 text-sm">Choose your profile pic</p>
-                                <div className="relative w-full sm:w-[450px]">
-                                    <input name="image" {...register("image", { required: true })} className="w-[300px]  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="file" placeholder="Image" />
+                                <div className="relative w-[300px] sm:w-[450px]">
+                                    <input name="image" {...register("image", { required: true })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="file" placeholder="Image" />
                                     {errors.image && <span className='text-red-500'>Image is required</span>}
                                     <p className='text-xl absolute top-3.5 left-3 '><MdOutlineInsertPhoto></MdOutlineInsertPhoto ></p>
                                 </div>
                             </div>
                             <div>
                                 <p className="px-2 pb-1 text-sm">Write your email</p>
-                                <div className="relative w-full sm:w-[450px]">
+                                <div className="relative w-[300px] sm:w-[450px]">
                                     <input required name="email" {...register("email", { required: true })} className="w-[300px]  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="email" placeholder="email" />
                                     {errors.email && <span className='text-red-500'>Email is required</span>}
                                     <p className='text-xl absolute top-3.5 left-3 '><HiOutlineMail></HiOutlineMail></p>
@@ -130,7 +131,7 @@ const Register = () => {
 
                             <div>
                                 <p className="px-2 pb-1 text-sm">Give a unique pass</p>
-                                <div className="relative w-full sm:w-[450px]">
+                                <div className="relative w-[300px] sm:w-[450px]">
                                     <input
 
                                         type={showpass ? 'password' : 'text'} name="password" {...register("password", {
@@ -138,7 +139,7 @@ const Register = () => {
                                             minLength: 8,
                                             maxLength: 20,
                                             pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/
-                                        })} className="w-[300px]  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " placeholder="password" />
+                                        })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " placeholder="password" />
                                     <p className='text-xl absolute top-3 left-3 '><RiLockPasswordLine></RiLockPasswordLine></p>
                                     <p onClick={() => (setshowpass(!showpass))} className={`absolute top-2 right-0 mr-2 cursor-pointer text-lg  p-1`}>{showpass ? <AiOutlineEye></AiOutlineEye> : <AiOutlineEyeInvisible></AiOutlineEyeInvisible>}</p>
                                     {errors?.password?.type === 'required' && <span className='text-red-500'>Password invalid</span>}

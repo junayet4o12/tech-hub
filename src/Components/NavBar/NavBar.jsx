@@ -7,11 +7,14 @@ import {
     Button,
     IconButton,
     Card,
+    Collapse,
 } from "@material-tailwind/react";
 import { NavLink } from "react-router-dom";
 import NavProfile from "./NavProfile";
 import useAuth from "../../hooks/useAuth";
-
+import { FaHome } from "react-icons/fa";
+import { MdAddShoppingCart, MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { BsMenuButtonWideFill } from "react-icons/bs";
 const NavBar = () => {
     const [openNav, setOpenNav] = useState(false);
     const { user } = useAuth()
@@ -32,9 +35,9 @@ const NavBar = () => {
                     color="blue-gray"
                     className="p-1 font-normal navlink transition-all duration-500"
                 >
-                    <a className="flex items-center">
-                        Home
-                    </a>
+                    <span className="flex items-center gap-x-1">
+                      <FaHome/>  Home
+                    </span>
                 </Typography>
             </NavLink>
             <NavLink to={'/allProducts'}>
@@ -44,9 +47,9 @@ const NavBar = () => {
                     color="blue-gray"
                     className="p-1 font-normal navlink transition-all duration-500"
                 >
-                    <a className="flex items-center ">
-                        All Products
-                    </a>
+                    <span className="flex items-center gap-x-1">
+                    <MdOutlineProductionQuantityLimits />   All Products
+                    </span>
                 </Typography>
             </NavLink>
             <NavLink to={'yourProducts'}>
@@ -56,21 +59,21 @@ const NavBar = () => {
                     color="blue-gray"
                     className="p-1 font-normal navlink transition-all duration-500"
                 >
-                    <a className="flex items-center ">
-                        Your Products
-                    </a>
+                    <span className="flex items-center gap-x-1">
+                    <BsMenuButtonWideFill />  Your Products
+                    </span>
                 </Typography>
             </NavLink>
-            <NavLink to={'addProducts'}>
+            <NavLink to={'addProduct'}>
                 <Typography
                     as="li"
                     variant="small"
                     color="blue-gray"
                     className="p-1 font-normal navlink transition-all duration-500"
                 >
-                    <a className="flex items-center ">
-                        Add Product
-                    </a>
+                    <span className="flex items-center gap-x-1">
+                    <MdAddShoppingCart />   Add Product
+                    </span>
                 </Typography>
             </NavLink>
         </ul>
@@ -144,7 +147,7 @@ const NavBar = () => {
                         }
                     </div>
                 </div>
-                <MobileNav open={openNav}>
+                <Collapse open={openNav}>
                     {navList}  
                     {
                         !user && <div className="flex items-center gap-x-1">
@@ -155,7 +158,7 @@ const NavBar = () => {
                             </NavLink>
                         </div>
                     }
-                </MobileNav>
+                </Collapse>
 
             </Navbar>
         </div>

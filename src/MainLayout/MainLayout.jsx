@@ -11,7 +11,7 @@ const MainLayout = () => {
             <div className='fixed w-full z-10'>
                 <NavBar />
             </div>
-            <div className={`${pathName==='/' ? 'pt-0' : 'pt-14'}`}>
+            <div className={`${pathName==='/' ? 'pt-0' : 'pt-20'}`}>
                 <Outlet />
             </div>
         </div>

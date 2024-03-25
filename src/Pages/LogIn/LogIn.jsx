@@ -14,13 +14,13 @@ import loginImg from '../../assets/loginImg.svg'
 import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 const LogIn = () => {
     const { loginUser } = useAuth()
-    const [showpass, setshowpass] = useState(true);
-    const [err, seterr] = useState('')
+    const [showPass, setShowPass] = useState(true);
+    const [err, setErr] = useState('')
     const navigate = useNavigate();
     // data.email, data.password
     const { register, handleSubmit, watch, reset, formState: { errors }, } = useForm()
     const onSubmit = async (data) => {
-        seterr('')
+        setErr('')
         const email = data?.email;
         const password = data?.password;
         loginUser(email, password)
@@ -47,7 +47,7 @@ const LogIn = () => {
             })
             .catch(err => {
                 console.log(err)
-                seterr(err?.message)
+                setErr(err?.message)
             })
 
     }
@@ -79,7 +79,7 @@ const LogIn = () => {
                             <div>
                                 <p className="px-2 pb-1 text-sm">Write your email</p>
                                 <div className="relative w-full sm:w-[450px]">
-                                    <input required name="email" {...register("email", { required: true })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="email" placeholder="email" />
+                                    <input required name="email" {...register("productName", { required: true })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " type="email" placeholder="email" />
                                     {errors.email && <span className='text-red-500 text-sm'>Email is required</span>}
                                     <p className='text-xl absolute top-3.5 left-3 '><HiOutlineMail></HiOutlineMail></p>
                                 </div>
@@ -89,11 +89,11 @@ const LogIn = () => {
                                 <p className="px-2 pb-1 text-sm">Write your given pass </p>
                                 <div className="relative w-full sm:w-[450px]">
                                     <input
-                                        type={showpass ? 'password' : 'text'} name="password" {...register("password", {
+                                        type={showPass ? 'password' : 'text'} name="password" {...register("password", {
                                             required: true
                                         })} className="w-full  sm:w-[450px]  bg-gray-200 p-3 px-10 rounded-lg " placeholder="password" />
                                     <p className='text-xl absolute top-3 left-3 '><RiLockPasswordLine></RiLockPasswordLine></p>
-                                    <p onClick={() => (setshowpass(!showpass))} className={`absolute top-2 right-0 mr-2 cursor-pointer text-lg  p-1`}>{showpass ? <AiOutlineEye></AiOutlineEye> : <AiOutlineEyeInvisible></AiOutlineEyeInvisible>}</p>
+                                    <p onClick={() => (setShowPass(!showPass))} className={`absolute top-2 right-0 mr-2 cursor-pointer text-lg  p-1`}>{showPass ? <AiOutlineEye></AiOutlineEye> : <AiOutlineEyeInvisible></AiOutlineEyeInvisible>}</p>
                                     {errors?.password?.type === 'required' && <span className='text-red-500 text-sm'>Password invalid</span>}
                                     <span className='text-red-500 text-sm font-medium'>{err}</span>
 

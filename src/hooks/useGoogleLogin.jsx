@@ -8,40 +8,40 @@ import useAxiosPublic from "./useAxiosPublic";
 
 const useGoogleLogin = () => {
     const navigate = useNavigate()
-    const {  googleLogIn } = useAuth()
+    const { googleLogIn } = useAuth()
     const axiosPublic = useAxiosPublic();
     const handlegooglelogin = () => {
-        
+
         googleLogIn()
             .then(res => {
                 console.log(res.user);
                 const userInfo = {
+                    name: res?.user?.displayName,
                     email: res?.user?.email,
-                    name: res?.user?.displayName
+                    image: res?.user?.photoURL
                 }
-                navigate('/')
-                // axiosPublic.post('/users', userInfo)
-                //     .then(res => {
-                //         console.log(res?.data);
-                //         Swal.fire({
-                //             title: "Logged in Successfully..",
-                //             showClass: {
-                //                 popup: `
-                //         animate__animated
-                //         animate__fadeInUp
-                //         animate__faster
-                //       `
-                //             },
-                //             hideClass: {
-                //                 popup: `
-                //         animate__animated
-                //         animate__fadeOutDown
-                //         animate__faster
-                //       `
-                //             }
-                //         });
-                //         navigate( '/')
-                //     })
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res?.data);
+                        Swal.fire({
+                            title: "Logged in Successfully..",
+                            showClass: {
+                                popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                            },
+                            hideClass: {
+                                popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                            }
+                        });
+                        navigate('/')
+                    })
 
 
             })

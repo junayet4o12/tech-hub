@@ -1,9 +1,9 @@
 import axios from "axios";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase/firebaseconfig";
 import { backendUrl } from "./backendUrl";
- 
+import auth from "../firebase/firebase.config";
+  
 // import React from 'react';
 const axiosSecure = axios.create({
     baseURL: backendUrl
